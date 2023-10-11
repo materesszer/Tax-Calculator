@@ -5,7 +5,7 @@ GUI-based tax calculator for my CS50 final project
                         - Todd Howard, 2015
 
 
-# Tax Calculator
+# Details
 #### Video Demo:  <URL HERE>
 #### Description:
 
