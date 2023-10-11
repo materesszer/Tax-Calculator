@@ -4,7 +4,7 @@ int income(void);
 char method(void);
 bool hasDeduction();
 int deductions();
-void get_brackets(int &array, char taxmethod);
+void get_brackets(int *array, char taxmethod);
 
 const int MAX_BRACKETS = 10;
 
@@ -14,7 +14,13 @@ int main()
     char tax_method = method();
     int your_deductions = deductions();
     int brackets[MAX_BRACKETS];
-    get_brackets(*brackets, tax_method);
+    get_brackets(brackets, tax_method);
+    int *ptr = brackets;
+    while (*ptr != 0)
+    {
+        std::cout << *ptr <<std::endl;
+        ptr++;
+    }
 }
 
 // Asks user for monthly income, stores value in income
@@ -125,21 +131,21 @@ int deductions()
     return user_deductions;
 }
 
-void get_brackets(int &array,char taxmethod)
+void get_brackets(int *array,char taxmethod)
 {
     // No need for brackets with flat tax
     if (taxmethod == 'f')
     {
         return;
     }
-
-    // Get amount of brackets
+    // Progressive tax
     else
     {
+        // Get amount of brackets, handle errors
+        int brackets;
         try
         {
             std::cout << "How many tax brackets are there? (Max 10, Min 2)";
-            int brackets;
             std::cin >> brackets;
             if (brackets < 2 || brackets > 10)
             {
@@ -153,9 +159,21 @@ void get_brackets(int &array,char taxmethod)
             return get_brackets(array,taxmethod);
         }
         
+        // Populate brackets
+        int bracket;
+        int previous_bracket = 0;
+        for (int i = 0; i < brackets; i++)
+        {
+            do
+            {
+                std::cout << "Bracket " + std::to_string(i+1) + ":";
+                std::cin >> bracket;
+            }
+            while (bracket < previous_bracket);
+            array[i] = bracket;
+            previous_bracket = bracket;
+        }
     }
 
-    // Populate brackets
-    
 }
 
