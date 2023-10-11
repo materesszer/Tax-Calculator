@@ -1,9 +1,11 @@
 # Tax-Calculator
 GUI-based tax calculator for my CS50 final project
 
-"All of this just works."
-###                        - Todd Howard, 2015
+<br></br>
+> "All of this just works."
 
+
+<p align="center"> -Todd Howard, 2015 </p>
 
 # Details
 #### Video Demo:  <URL HERE>
