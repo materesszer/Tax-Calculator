@@ -1,18 +1,22 @@
+#include "inputValidator.h"
 #include <iostream>
+
 
 int income(void);
 char method(void);
 bool hasDeduction();
-int deductions();
+int deductions(int income);
 void get_brackets(int *array, char taxmethod);
+void populate_brackets(int *array, int brackets);
 
+const int MIN_BRACKETS = 2;
 const int MAX_BRACKETS = 10;
 
 int main()
 {
     int your_income = income();
     char tax_method = method();
-    int your_deductions = deductions();
+    int your_deductions = deductions(your_income);
     int brackets[MAX_BRACKETS];
     get_brackets(brackets, tax_method);
     int *ptr = brackets;
@@ -23,116 +27,71 @@ int main()
     }
 }
 
-// Asks user for monthly income, stores value in income
-int income(void)
-{
-    try
-    {
-        std::cout << "What is your monthly income? ";
-        int income;
-        std::cin >> income;
-        if (income < 1)
-        {
-            throw std::invalid_argument("Income must be at least $1");
-        }
-        return income;
-    }
-
-    catch (const std::invalid_argument& e)
-    {
-        std::cerr << e.what() << std::endl;
-        return income();
-    }
+int income() {
+    return inputValidator<int>(
+        "What is your monthly income? ",
+        "Income must be at least $1",
+        [](int income) { return income >= 1; }
+    );
 }
 
-// Asks user whether he is taxed progressively or flat
-char method(void)
-{
-    try
-    {
-        std::cout << "Type p for progressive, f for flat tax method ";
-        char method;
-        std::cin >> method;
-        method = tolower(method);
-
-        if (method != 'f' && method != 'p')
-        {
-            throw std::invalid_argument("Method must be 'p' for progressive taxation, or 'f' for flat taxation");
-        }
-        return method;
-
-    }
-    catch (const std::invalid_argument& e)
-    {
-        std::cerr << e.what() << std::endl;
-        return method();
-    }
-    
+char method() {
+    return inputValidator<char>(
+        "Type p for progressive, f for flat tax method ",
+        "Method must be 'p' for progressive taxation, or 'f' for flat taxation",
+        [](char method) { return method == 'f' || method == 'p'; }
+    );
 }
 
 // Asks user whether he has deductions
 bool hasDeduction()
 {
-    try
+    char answer = inputValidator<char>(
+    "Do you have deductions? ('y' for yes, 'n' for no) ",
+    "Answer must be either 'y' or 'n'",
+    [](char answer) { return answer== 'y' || answer == 'n'; }
+    );
+    if (answer == 'y')
     {
-        std::cout << "Do you have deductions? ('y' for yes, 'n' for no)";
-        char answer;
-        std::cin >> answer;
-        answer = tolower(answer);
-
-        if (answer != 'y' && answer != 'n')
-        {
-            throw std::invalid_argument("Answer must be either 'y' or 'n'");
-        }
-        if (answer == 'y')
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return true;
     }
-    catch(const std::invalid_argument& e)
+    else
     {
-        std::cerr << e.what() << '\n';
-        return hasDeduction();
+        return false;
     }
     
 }
 
-int deductions()
+int deductions(int income)
 {
     bool answer = hasDeduction();
     int user_deductions;
     if (answer)
     {
-        try
+        user_deductions = inputValidator<int>(
+        "What are your total deductions? ",
+        "Deductions must be at least $1",
+        [](int deductions) { return deductions >= 1; });
+        if (user_deductions > income)
         {
-            std::cout << "What are your total deductions? ";
-            std::cin >> user_deductions;
-            if (user_deductions< 1)
-            {
-                throw std::invalid_argument("Deductions must be at least $1");
-            }
+            std::cout << "Deductions can not be higher than your monthly income!\n";
+            return deductions(income);
+        }
+        else
+        {
             return user_deductions;
         }
-
-        catch (const std::invalid_argument& e)
-        {
-            std::cerr << e.what() << std::endl;
-            return deductions();
-        }
-        }
+    
+    }
     else
     {
-        user_deductions = 0;
+        return user_deductions = 0;
     }
-    return user_deductions;
 }
 
 void get_brackets(int *array,char taxmethod)
 {
+    int brackets;
     // No need for brackets with flat tax
     if (taxmethod == 'f')
     {
@@ -142,24 +101,21 @@ void get_brackets(int *array,char taxmethod)
     else
     {
         // Get amount of brackets, handle errors
-        int brackets;
-        try
-        {
-            std::cout << "How many tax brackets are there? (Max 10, Min 2)";
-            std::cin >> brackets;
-            if (brackets < 2 || brackets > 10)
-            {
-                throw std::invalid_argument("Number of brackets must be between 2 and 10");
-            }
-
-        }
-        catch(const std::invalid_argument& e)
-        {
-            std::cerr << e.what() << '\n';
-            return get_brackets(array,taxmethod);
-        }
+        brackets = inputValidator<int>(
+        "How many tax brackets are there? (Max 10, Min 2) ",
+        "Number of brackets must be between 2 and 10",
+        [](int brackets) { return brackets >= 2 || brackets <= 10; }
+        );
         
         // Populate brackets
+        populate_brackets(array, brackets);
+    }
+
+}
+
+void populate_brackets(int *array, int brackets)
+{
+    // Populate brackets
         int bracket;
         int previous_bracket = 0;
         for (int i = 0; i < brackets; i++)
@@ -173,7 +129,5 @@ void get_brackets(int *array,char taxmethod)
             array[i] = bracket;
             previous_bracket = bracket;
         }
-    }
-
 }
 
