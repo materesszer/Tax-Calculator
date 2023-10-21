@@ -1,161 +1,78 @@
+#include "inputHandling.h"
+#include "taxCalculator.h"
+
 #include <iostream>
+#include <iomanip>
 
-int income(void);
-char method(void);
-bool hasDeduction();
-int deductions();
-void get_brackets(int &array, char taxmethod);
-
+const int MIN_BRACKETS = 2;
 const int MAX_BRACKETS = 10;
+
+void printResults(int income, int income_after_taxes);
 
 int main()
 {
-    int your_income = income();
-    char tax_method = method();
-    int your_deductions = deductions();
-    int brackets[MAX_BRACKETS];
-    get_brackets(*brackets, tax_method);
-}
+    // User inputs
+    InputHandler user_inputs;
+    int your_income = user_inputs.income();
+    char tax_method = user_inputs.method();
 
-// Asks user for monthly income, stores value in income
-int income(void)
-{
-    try
+    // Deductions
+    Deductions user_deductions;
+    int your_deductions = user_deductions.deductions(your_income);
+
+    double income_after_taxes;
+    if (tax_method == 'f')
     {
-        std::cout << "What is your monthly income? ";
-        int income;
-        std::cin >> income;
-        if (income < 1)
-        {
-            throw std::invalid_argument("Income must be at least $1");
-        }
-        return income;
+        // SINGLE TAX METHOD INPUTS
+        SingleTax flat;
+        int single_rate = flat.single_tax();
+
+        // SINGLE TAX METHOD CALCULATION
+        FlatTaxCalculator calculation;
+        income_after_taxes = calculation.calculateTax(your_income, your_deductions, single_rate);
     }
-
-    catch (const std::invalid_argument& e)
-    {
-        std::cerr << e.what() << std::endl;
-        return income();
-    }
-}
-
-// Asks user whether he is taxed progressively or flat
-char method(void)
-{
-    try
-    {
-        std::cout << "Type p for progressive, f for flat tax method ";
-        char method;
-        std::cin >> method;
-        method = tolower(method);
-
-        if (method != 'f' && method != 'p')
-        {
-            throw std::invalid_argument("Method must be 'p' for progressive taxation, or 'f' for flat taxation");
-        }
-        return method;
-
-    }
-    catch (const std::invalid_argument& e)
-    {
-        std::cerr << e.what() << std::endl;
-        return method();
-    }
-    
-}
-
-// Asks user whether he has deductions
-bool hasDeduction()
-{
-    try
-    {
-        std::cout << "Do you have deductions? ('y' for yes, 'n' for no)";
-        char answer;
-        std::cin >> answer;
-        answer = tolower(answer);
-
-        if (answer != 'y' && answer != 'n')
-        {
-            throw std::invalid_argument("Answer must be either 'y' or 'n'");
-        }
-        if (answer == 'y')
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    catch(const std::invalid_argument& e)
-    {
-        std::cerr << e.what() << '\n';
-        return hasDeduction();
-    }
-    
-}
-
-int deductions()
-{
-    bool answer = hasDeduction();
-    int user_deductions;
-    if (answer)
-    {
-        try
-        {
-            std::cout << "What are your total deductions? ";
-            std::cin >> user_deductions;
-            if (user_deductions< 1)
-            {
-                throw std::invalid_argument("Deductions must be at least $1");
-            }
-            return user_deductions;
-        }
-
-        catch (const std::invalid_argument& e)
-        {
-            std::cerr << e.what() << std::endl;
-            return deductions();
-        }
-        }
     else
     {
-        user_deductions = 0;
-    }
-    return user_deductions;
-}
+        // PROGRESSIVE TAX METHOD INPUTS
+        // Brackets for progressive tax
+        Brackets user_brackets;
+        int brackets[MAX_BRACKETS];
+        int brackets_count = user_brackets.get_brackets(brackets, tax_method);
 
-void get_brackets(int &array,char taxmethod)
-{
-    // No need for brackets with flat tax
-    if (taxmethod == 'f')
-    {
-        return;
-    }
+        std::cout <<"NOTE: TOOL ASKS FOR BRAKCET LIMITS LESS THAN OF PREVIOUS INPUT, AS LAST BRACKET HAS NO UPPER BOUND" <<std::endl;
 
-    // Get amount of brackets
-    else
-    {
-        try
-        {
-            std::cout << "How many tax brackets are there? (Max 10, Min 2)";
-            int brackets;
-            std::cin >> brackets;
-            if (brackets < 2 || brackets > 10)
-            {
-                throw std::invalid_argument("Number of brackets must be between 2 and 10");
-            }
+        // Limits for the brackets
+        BracketLimits user_bracket_limits;
+        int bracket_limits[MAX_BRACKETS];
+        user_bracket_limits.get_bracket_limits(bracket_limits, brackets_count, your_income);
 
-        }
-        catch(const std::invalid_argument& e)
-        {
-            std::cerr << e.what() << '\n';
-            return get_brackets(array,taxmethod);
-        }
-        
-    }
-
-    // Populate brackets
+        // PROGRESSIVE TAX CALCULATION
+        ProgressiveTaxCalculator calculation;
+        income_after_taxes = calculation.calculateTax(your_income, your_deductions, brackets, bracket_limits, brackets_count);
+    }   
     
+    std::cout << "\n";
+
+    printResults(your_income, income_after_taxes);
+
+
 }
 
+void printResults(int income, int income_after_taxes)
+{
+    // Print user income before and after taxes, total amount of taxes, rax rate
+    std::cout << "Your income before taxes is: $";
+    std::cout << income <<std::endl;
+
+    std::cout << "Your income after taxes is: $";
+    std::cout << income_after_taxes <<std::endl;
+
+    double taxes_total = income - income_after_taxes;
+    std::cout << "Your total amount of taxes is: $";
+    std::cout << taxes_total <<std::endl;
+
+    std::cout << "Your effective tax rate is: ";
+    double effective_rate = (taxes_total / income) * 100;
+    std::cout << std::fixed << std::setprecision(2) << effective_rate;
+    std::cout << "%" <<std::endl;
+}
