@@ -1,133 +1,78 @@
-#include "inputValidator.h"
+#include "inputHandling.h"
+#include "taxCalculator.h"
+
 #include <iostream>
-
-
-int income(void);
-char method(void);
-bool hasDeduction();
-int deductions(int income);
-void get_brackets(int *array, char taxmethod);
-void populate_brackets(int *array, int brackets);
+#include <iomanip>
 
 const int MIN_BRACKETS = 2;
 const int MAX_BRACKETS = 10;
 
+void printResults(int income, int income_after_taxes);
+
 int main()
 {
-    int your_income = income();
-    char tax_method = method();
-    int your_deductions = deductions(your_income);
-    int brackets[MAX_BRACKETS];
-    get_brackets(brackets, tax_method);
-    int *ptr = brackets;
-    while (*ptr != 0)
+    // User inputs
+    InputHandler user_inputs;
+    int your_income = user_inputs.income();
+    char tax_method = user_inputs.method();
+
+    // Deductions
+    Deductions user_deductions;
+    int your_deductions = user_deductions.deductions(your_income);
+
+    double income_after_taxes;
+    if (tax_method == 'f')
     {
-        std::cout << *ptr <<std::endl;
-        ptr++;
-    }
-}
+        // SINGLE TAX METHOD INPUTS
+        SingleTax flat;
+        int single_rate = flat.single_tax();
 
-int income() {
-    return inputValidator<int>(
-        "What is your monthly income? ",
-        "Income must be at least $1",
-        [](int income) { return income >= 1; }
-    );
-}
-
-char method() {
-    return inputValidator<char>(
-        "Type p for progressive, f for flat tax method ",
-        "Method must be 'p' for progressive taxation, or 'f' for flat taxation",
-        [](char method) { return method == 'f' || method == 'p'; }
-    );
-}
-
-// Asks user whether he has deductions
-bool hasDeduction()
-{
-    char answer = inputValidator<char>(
-    "Do you have deductions? ('y' for yes, 'n' for no) ",
-    "Answer must be either 'y' or 'n'",
-    [](char answer) { return answer== 'y' || answer == 'n'; }
-    );
-    if (answer == 'y')
-    {
-        return true;
+        // SINGLE TAX METHOD CALCULATION
+        FlatTaxCalculator calculation;
+        income_after_taxes = calculation.calculateTax(your_income, your_deductions, single_rate);
     }
     else
     {
-        return false;
-    }
+        // PROGRESSIVE TAX METHOD INPUTS
+        // Brackets for progressive tax
+        Brackets user_brackets;
+        int brackets[MAX_BRACKETS];
+        int brackets_count = user_brackets.get_brackets(brackets, tax_method);
+
+        std::cout <<"NOTE: TOOL ASKS FOR BRAKCET LIMITS LESS THAN OF PREVIOUS INPUT, AS LAST BRACKET HAS NO UPPER BOUND" <<std::endl;
+
+        // Limits for the brackets
+        BracketLimits user_bracket_limits;
+        int bracket_limits[MAX_BRACKETS];
+        user_bracket_limits.get_bracket_limits(bracket_limits, brackets_count, your_income);
+
+        // PROGRESSIVE TAX CALCULATION
+        ProgressiveTaxCalculator calculation;
+        income_after_taxes = calculation.calculateTax(your_income, your_deductions, brackets, bracket_limits, brackets_count);
+    }   
     
+    std::cout << "\n";
+
+    printResults(your_income, income_after_taxes);
+
+
 }
 
-int deductions(int income)
+void printResults(int income, int income_after_taxes)
 {
-    bool answer = hasDeduction();
-    int user_deductions;
-    if (answer)
-    {
-        user_deductions = inputValidator<int>(
-        "What are your total deductions? ",
-        "Deductions must be at least $1",
-        [](int deductions) { return deductions >= 1; });
-        if (user_deductions > income)
-        {
-            std::cout << "Deductions can not be higher than your monthly income!\n";
-            return deductions(income);
-        }
-        else
-        {
-            return user_deductions;
-        }
-    
-    }
-    else
-    {
-        return user_deductions = 0;
-    }
+    // Print user income before and after taxes, total amount of taxes, rax rate
+    std::cout << "Your income before taxes is: $";
+    std::cout << income <<std::endl;
+
+    std::cout << "Your income after taxes is: $";
+    std::cout << income_after_taxes <<std::endl;
+
+    double taxes_total = income - income_after_taxes;
+    std::cout << "Your total amount of taxes is: $";
+    std::cout << taxes_total <<std::endl;
+
+    std::cout << "Your effective tax rate is: ";
+    double effective_rate = (taxes_total / income) * 100;
+    std::cout << std::fixed << std::setprecision(2) << effective_rate;
+    std::cout << "%" <<std::endl;
 }
-
-void get_brackets(int *array,char taxmethod)
-{
-    int brackets;
-    // No need for brackets with flat tax
-    if (taxmethod == 'f')
-    {
-        return;
-    }
-    // Progressive tax
-    else
-    {
-        // Get amount of brackets, handle errors
-        brackets = inputValidator<int>(
-        "How many tax brackets are there? (Max 10, Min 2) ",
-        "Number of brackets must be between 2 and 10",
-        [](int brackets) { return brackets >= 2 || brackets <= 10; }
-        );
-        
-        // Populate brackets
-        populate_brackets(array, brackets);
-    }
-
-}
-
-void populate_brackets(int *array, int brackets)
-{
-    // Populate brackets
-        int bracket;
-        int previous_bracket = 0;
-        for (int i = 0; i < brackets; i++)
-        {
-            do
-            {
-                std::cout << "Bracket " + std::to_string(i+1) + ":";
-                std::cin >> bracket;
-            }
-            while (bracket < previous_bracket);
-            array[i] = bracket;
-            previous_bracket = bracket;
-        }
-}
-
