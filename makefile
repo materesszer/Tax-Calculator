@@ -1,2 +1,10 @@
-all:
-	g++ taxalpha.cpp inputValidator.h inputHandling.cpp taxCalculator.cpp -o taxalpha
+CC = g++
+CFLAGS = -Iinputs -Icalculator
+
+all: taxalpha
+
+taxalpha: taxalpha.cpp inputs/inputValidator.h inputs/inputHandling.cpp calculator/taxCalculator.cpp
+	$(CC) $(CFLAGS) taxalpha.cpp inputs/inputHandling.cpp calculator/taxCalculator.cpp -o taxalpha
+
+clean:
+	rm -f taxalpha
