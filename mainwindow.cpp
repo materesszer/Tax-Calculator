@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     ui->deductionAmount->setVisible(false);
+
+    ui->singleTaxButton->setChecked(true);
 }
 
 MainWindow::~MainWindow()
