@@ -18,6 +18,10 @@ public:
 private slots:
 
 
+    void on_singleTaxButton_toggled(bool checked);
+
+    void on_progressiveTaxButton_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
 };

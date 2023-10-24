@@ -46,6 +46,9 @@
          <property name="text">
           <string>Income:</string>
          </property>
+         <property name="buddy">
+          <cstring>singleTax_2</cstring>
+         </property>
         </widget>
        </item>
        <item>
@@ -107,99 +110,186 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="singleTax_2" native="true">
+   <widget class="QStackedWidget" name="singleTax_2">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>300</y>
-      <width>300</width>
-      <height>200</height>
+      <x>130</x>
+      <y>280</y>
+      <width>461</width>
+      <height>261</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="singleTax">
-     <item row="0" column="0">
-      <widget class="QWidget" name="input_2" native="true">
-       <layout class="QGridLayout" name="input">
-        <item row="0" column="0">
-         <layout class="QHBoxLayout" name="taxRate">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>Tax rate:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="value">
-            <property name="placeholderText">
-             <string>enter tax rate:</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="1" column="0">
-         <widget class="QPushButton" name="calculateButton">
-          <property name="text">
-           <string>Calculate taxes</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QWidget" name="results_2" native="true">
-       <layout class="QGridLayout" name="results">
-        <item row="0" column="0">
-         <widget class="QLabel" name="afterTaxes">
-          <property name="text">
-           <string>Income after taxes:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" alignment="Qt::AlignHCenter">
-         <widget class="QLabel" name="afterTaxesVal">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="totalTaxes">
-          <property name="text">
-           <string>Total taxes:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" alignment="Qt::AlignHCenter">
-         <widget class="QLabel" name="totalTaxesVal">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="effRate">
-          <property name="text">
-           <string>Effective tax rate:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="effRateVal">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-    </layout>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="singleTax_2Page1" native="true">
+     <layout class="QGridLayout" name="singleTax">
+      <item row="0" column="0">
+       <widget class="QWidget" name="input_2" native="true">
+        <layout class="QGridLayout" name="input">
+         <item row="0" column="0">
+          <layout class="QHBoxLayout" name="taxRate">
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Tax rate:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="value">
+             <property name="placeholderText">
+              <string>enter tax rate:</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="1" column="0">
+          <widget class="QPushButton" name="calculateButton">
+           <property name="text">
+            <string>Calculate taxes</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QWidget" name="results_2" native="true">
+        <layout class="QGridLayout" name="results">
+         <item row="0" column="0">
+          <widget class="QLabel" name="afterTaxes">
+           <property name="text">
+            <string>Income after taxes:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="afterTaxesVal">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="totalTaxes">
+           <property name="text">
+            <string>Total taxes:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" alignment="Qt::AlignHCenter">
+          <widget class="QLabel" name="totalTaxesVal">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="effRate">
+           <property name="text">
+            <string>Effective tax rate:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="effRateVal">
+           <property name="text">
+            <string>TextLabel</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QWidget" name="singleTax_2Page2">
+     <widget class="QWidget" name="">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>50</y>
+        <width>461</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout" columnstretch="10,2,1,10,2">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetFixedSize</enum>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
+         </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="text">
+          <string>Bracket 1</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>10</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="baseSize">
+          <size>
+           <width>5</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>%</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Limit:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="4">
+        <widget class="QLineEdit" name="lineEdit_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>40</width>
+           <height>16777215</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
  </widget>
@@ -218,38 +308,6 @@
     <hint type="destinationlabel">
      <x>209</x>
      <y>109</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>singleTaxButton</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>singleTax_2</receiver>
-   <slot>setVisible(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>124</x>
-     <y>141</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>376</x>
-     <y>376</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>progressiveTaxButton</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>singleTax_2</receiver>
-   <slot>setHidden(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>274</x>
-     <y>141</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>376</x>
-     <y>376</y>
     </hint>
    </hints>
   </connection>

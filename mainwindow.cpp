@@ -12,10 +12,26 @@ MainWindow::MainWindow(QWidget *parent)
     ui->singleTaxButton->setChecked(true);
 
     ui->results_2->setHidden(true);
+
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_singleTaxButton_toggled(bool checked)
+{
+    ui->singleTax_2Page1->setVisible(true);
+    ui->singleTax_2Page2->setHidden(true);
+}
+
+
+
+void MainWindow::on_progressiveTaxButton_toggled(bool checked)
+{
+    ui->singleTax_2Page2->setVisible(true);
+    ui->singleTax_2Page1->setHidden(true);
 }
 
