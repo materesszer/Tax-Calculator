@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>748</width>
+    <width>800</width>
     <height>600</height>
    </rect>
   </property>
@@ -29,7 +29,7 @@
    <property name="accessibleName">
     <string/>
    </property>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>61</x>
@@ -38,7 +38,7 @@
       <height>122</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout">
+    <layout class="QGridLayout" name="userInputs">
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="income">
        <item>
@@ -100,6 +100,95 @@
         <widget class="QRadioButton" name="progressiveTaxButton">
          <property name="text">
           <string>Progressive taxation</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>276</x>
+      <y>400</y>
+      <width>227</width>
+      <height>120</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="singleTax">
+     <item>
+      <widget class="QWidget" name="taxRate" native="true">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="taxRateLabel">
+          <property name="text">
+           <string>Tax Rate</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="taxRateAmount">
+          <property name="placeholderText">
+           <string>enter tax rate:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="incomeAftTxs">
+       <item>
+        <widget class="QLabel" name="incomeAftTxsLabel">
+         <property name="text">
+          <string>Income after taxes:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="incomeAftTxsAmount">
+         <property name="text">
+          <string>Empty</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="taxesTotal">
+       <item>
+        <widget class="QLabel" name="taxesTotalLabel">
+         <property name="text">
+          <string>Taxes total:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="taxesTotalAmount">
+         <property name="text">
+          <string>Empty</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="effTaxRate">
+       <item>
+        <widget class="QLabel" name="effTaxRateLabel">
+         <property name="text">
+          <string>Effective tax rate:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="effTaxRateAmount">
+         <property name="text">
+          <string>Empty</string>
          </property>
         </widget>
        </item>
