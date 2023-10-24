@@ -2,21 +2,130 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>748</width>
     <height>600</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>MainWindow</string>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
-  <widget class="QMenuBar" name="menubar"/>
-  <widget class="QStatusBar" name="statusbar"/>
+  <property name="windowTitle">
+   <string>Tax Calculator</string>
+  </property>
+  <property name="toolTip">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Window&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="accessibleName">
+    <string/>
+   </property>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>61</x>
+      <y>33</y>
+      <width>298</width>
+      <height>122</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <layout class="QHBoxLayout" name="income">
+       <item>
+        <widget class="QLabel" name="incomeLabel">
+         <property name="text">
+          <string>Income:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="incomeAmount">
+         <property name="placeholderText">
+          <string>enter income:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="1" column="0">
+      <layout class="QVBoxLayout" name="deductions">
+       <item>
+        <widget class="QCheckBox" name="deductionIsEnabled">
+         <property name="text">
+          <string>Enable deductions</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="deductionAmount">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="frame">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>enter deductions:</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="2" column="0">
+      <layout class="QHBoxLayout" name="taxModes">
+       <item>
+        <widget class="QRadioButton" name="singleTaxButton">
+         <property name="text">
+          <string>Single tax rate</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="progressiveTaxButton">
+         <property name="text">
+          <string>Progressive taxation</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>deductionIsEnabled</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>deductionAmount</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>209</x>
+     <y>79</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>209</x>
+     <y>109</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
