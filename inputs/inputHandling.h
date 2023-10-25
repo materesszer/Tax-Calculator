@@ -1,33 +1,35 @@
 #ifndef INPUTHANDLING_H
 #define INPUTHANDLING_H
 
-class InputHandler
+#include <vector>
+
+bool validateBools(const std::vector<bool>& bools);
+
+class SingleTaxInputs
 {
+    protected:
+    int income;
+    int deductions;
+    int taxRate;
+
     public:
-    int income(void);
-    char method(void);
+    SingleTaxInputs(int inc, int ded, int txRt)
+    {
+        income = inc;
+        deductions = ded;
+        taxRate = txRt;
+    }
+
+    bool validateInputs();
+
 };
-class Deductions
+
+class SingleTaxInputsImplementation
 {
     public:
-    bool hasDeduction();
-    int deductions(int income);
-};
-class Brackets
-{
-    public:
-    int get_brackets(int *array, char taxmethod);
-    void populate_brackets(int *array, int brackets);
-};
-class SingleTax
-{
-    public:
-    int single_tax();
-};
-class BracketLimits
-{
-    public:
-    void get_bracket_limits(int *array, int brackets, int income);
+    bool incomeValidator(int income);
+    bool deductionsValidator(int deductions);
+    bool taxRateValidator(int taxRate);
 };
 
 #endif // INPUTHANDLING_H
