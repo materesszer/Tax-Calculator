@@ -2,12 +2,14 @@
 #define INPUTHANDLING_H
 
 #include <vector>
+#include <functional>
 
 bool validateBools(const std::vector<bool>& bools);
 
+
 class SingleTaxInputs
 {
-    protected:
+    private:
     int income;
     int deductions;
     int taxRate;
@@ -28,7 +30,7 @@ class SingleTaxInputsImplementation
 {
     public:
     bool incomeValidator(int income);
-    bool deductionsValidator(int deductions);
+    bool deductionsValidator(int deductions, int income);
     bool taxRateValidator(int taxRate);
 };
 

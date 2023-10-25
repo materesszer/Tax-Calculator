@@ -20,7 +20,6 @@ set(PROJECT_SOURCES
 
         inputs/inputHandling.cpp
         inputs/inputHandling.h
-        inputs/inputValidator.h
 
         calculator/taxCalculator.cpp
         calculator/taxCalculator.h

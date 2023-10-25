@@ -10,6 +10,7 @@ class FlatTaxCalculator
 {
     public:
     double calculateTax(int income, int deductions, int rate);
+
 };
 
 

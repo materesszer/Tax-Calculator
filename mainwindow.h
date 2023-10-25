@@ -22,6 +22,8 @@ private slots:
 
     void on_progressiveTaxButton_toggled(bool checked);
 
+    void on_calculateButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
