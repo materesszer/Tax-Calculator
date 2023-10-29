@@ -17,6 +17,11 @@ GUI-based tax calculator for my CS50 final project. Usage is very simple, just e
 - Qt framework (Project uses CMake)
 - A compiler for C++ (This project uses GCC)
 
+## How to install:
 
+
+## License:
+
+- This project is licensed under the [MIT License](LICENSE).
 
 
