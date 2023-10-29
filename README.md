@@ -22,6 +22,6 @@ GUI-based tax calculator for my CS50 final project. Usage is very simple, just e
 
 ## License:
 
-- This project is licensed under the [MIT License](LICENSE).
+- This project is licensed under the [MIT License](LICENSE.md).
 
 
