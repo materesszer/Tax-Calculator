@@ -4,8 +4,6 @@
 #include <functional>
 
 const int MIN_DOLLARS = 1;
-const int MIN_BRACKETS = 2;
-const int MAX_BRACKETS = 10;
 const int MIN_TAX = 1;
 const int MAX_TAX = 100;
 
@@ -16,6 +14,7 @@ bool SingleTaxInputs::validateInputs()
     bool isDeductionsValid = validator.deductionsValidator(deductions, income);
     bool isTaxRateValid = validator.taxRateValidator(taxRate);
 
+    // Very important, this only allows calculator to proceed if all conditions passed the check
     std::vector<bool> bools = {isIncomeValid, isDeductionsValid, isTaxRateValid};
     return validateBools(bools);
 
