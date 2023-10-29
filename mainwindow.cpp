@@ -58,6 +58,7 @@ void MainWindow::on_calculateButton_clicked()
     SingleTaxInputs inputHandler(income, deductions, taxRate);
     bool isValid = inputHandler.validateInputs();
 
+    // Workaround pair
     if (!ui->deductionIsEnabled->isChecked())
     {
         deductions = 0;
