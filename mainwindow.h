@@ -24,6 +24,9 @@ private slots:
 
     void on_calculateButton_clicked();
 
+
+    void on_bracketAmount_textEdited();
+
 private:
     Ui::MainWindow *ui;
 };

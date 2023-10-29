@@ -701,7 +701,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="bracketAmount">
        <property name="placeholderText">
         <string>Enter bracket amount:</string>
        </property>

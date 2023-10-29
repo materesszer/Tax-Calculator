@@ -3,6 +3,9 @@
 #include "inputs/inputHandling.h"
 #include "calculator/taxCalculator.h"
 
+const int DEFAULTBRACKETSNUMBER = 2;
+
+// SETUP FOR WINDOW
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -39,10 +42,12 @@ void MainWindow::on_progressiveTaxButton_toggled(bool checked)
     ui->singleTax_2Page1->setHidden(true);
 
     ui->bracketCount_2->setVisible(true);
+
 }
+// END SETUP
 
 
-
+// Single tax
 void MainWindow::on_calculateButton_clicked()
 {
     int income = ui->incomeAmount->text().toInt();
@@ -81,4 +86,29 @@ void MainWindow::on_calculateButton_clicked()
 
 
 }
+
+
+void MainWindow::on_bracketAmount_textEdited()
+{
+    try
+    {
+        int bracketAmount = ui->bracketAmount->text().toInt();
+        if (progressiveTaxBrackets::bracketAmountValidator(bracketAmount))
+        {
+
+        }
+        else
+        {
+            throw (bracketAmount);
+        }
+    }
+    catch (int amount)
+    {
+        // set brackets to default value
+        ui->bracketAmount->setText(QString::number(DEFAULTBRACKETSNUMBER));
+    }
+}
+
+
+
 

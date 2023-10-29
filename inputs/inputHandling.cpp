@@ -6,6 +6,8 @@
 const int MIN_DOLLARS = 1;
 const int MIN_TAX = 1;
 const int MAX_TAX = 100;
+const int MIN_BRACKETS = 2;
+const int MAX_BRACKETS = 5;
 
 bool SingleTaxInputs::validateInputs()
 {
@@ -37,6 +39,33 @@ bool SingleTaxInputsImplementation::taxRateValidator(int taxRate)
 
 
 
+bool ProgressiveTaxInputs::validateInputs()
+{
+    ProgressiveTaxInputsImplementation validator;
+    bool isIncomeValid = validator.incomeValidator(income);
+    bool isDeductionsValid = validator.deductionsValidator(deductions, income);
+
+    // Very important, this only allows calculator to proceed if all conditions passed the check
+    std::vector<bool> bools = {isIncomeValid, isDeductionsValid};
+    return validateBools(bools);
+
+}
+
+bool ProgressiveTaxInputsImplementation::incomeValidator(int income)
+{
+    return income >= MIN_DOLLARS;
+}
+
+bool ProgressiveTaxInputsImplementation::deductionsValidator(int deductions, int income)
+{
+    return deductions >= MIN_DOLLARS && deductions < income;
+}
+
+
+
+
+
+
 bool validateBools(const std::vector<bool>& bools)
 {
     for (bool b : bools)
@@ -50,5 +79,12 @@ bool validateBools(const std::vector<bool>& bools)
 
 }
 
+namespace progressiveTaxBrackets
+{
+bool bracketAmountValidator(int brackets)
+{
+    return brackets >= MIN_BRACKETS && brackets <= MAX_BRACKETS;
+}
+}
 
 

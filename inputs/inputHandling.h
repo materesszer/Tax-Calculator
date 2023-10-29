@@ -34,4 +34,30 @@ class SingleTaxInputsImplementation
     bool taxRateValidator(int taxRate);
 };
 
+class ProgressiveTaxInputs
+{
+    private:
+    int income;
+    int deductions;
+    int bracketsAmount;
+    int bracketPercentages;
+    int bracketLimits;
+
+    bool validateInputs();
+
+};
+class ProgressiveTaxInputsImplementation
+{
+    public:
+    bool incomeValidator(int income);
+    bool deductionsValidator(int deductions, int income);
+    bool bracketAmountValidator(int brackets);
+};
+
+namespace progressiveTaxBrackets
+{
+bool bracketAmountValidator(int brackets);
+}
+
+
 #endif // INPUTHANDLING_H
