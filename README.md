@@ -8,6 +8,6 @@ GUI-based tax calculator for my CS50 final project
 <p align="center"> -Todd Howard, 2015 </p>
 
 # Details
-#### Video Demo:  <URL HERE>
+#### Video Demo:  <URL HERE >SOON
 #### Description:
 
