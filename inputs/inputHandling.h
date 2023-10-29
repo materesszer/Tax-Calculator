@@ -6,6 +6,12 @@
 
 bool validateBools(const std::vector<bool>& bools);
 
+const int MIN_DOLLARS = 1;
+const int MIN_TAX = 1;
+const int MAX_TAX = 100;
+const int MIN_BRACKETS = 2;
+const int MAX_BRACKETS = 5;
+
 
 class SingleTaxInputs
 {
@@ -39,7 +45,6 @@ class ProgressiveTaxInputs
     private:
     int income;
     int deductions;
-    int bracketsAmount;
     int bracketPercentages;
     int bracketLimits;
 

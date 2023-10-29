@@ -7,6 +7,7 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -25,7 +26,14 @@ private slots:
     void on_calculateButton_clicked();
 
 
-    void on_bracketAmount_textEdited();
+
+    void on_bracketAmount_valueChanged(int value);
+
+    void enableTaxBrackets(int userInput);
+
+    void disableRestOfBrackets(int userInput);
+
+    void disableLastBracketLimit(int userInput);
 
 private:
     Ui::MainWindow *ui;

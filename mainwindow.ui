@@ -120,7 +120,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="singleTax_2Page1">
      <layout class="QGridLayout" name="singleTax">
@@ -686,7 +686,7 @@
    <widget class="QWidget" name="bracketCount_2" native="true">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>460</x>
       <y>150</y>
       <width>257</width>
       <height>50</height>
@@ -701,9 +701,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="bracketAmount">
-       <property name="placeholderText">
-        <string>Enter bracket amount:</string>
+      <widget class="QSpinBox" name="bracketAmount">
+       <property name="minimum">
+        <number>2</number>
+       </property>
+       <property name="maximum">
+        <number>5</number>
        </property>
       </widget>
      </item>

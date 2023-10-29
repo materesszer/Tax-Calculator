@@ -3,11 +3,7 @@
 #include <vector>
 #include <functional>
 
-const int MIN_DOLLARS = 1;
-const int MIN_TAX = 1;
-const int MAX_TAX = 100;
-const int MIN_BRACKETS = 2;
-const int MAX_BRACKETS = 5;
+
 
 bool SingleTaxInputs::validateInputs()
 {
