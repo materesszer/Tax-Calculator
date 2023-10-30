@@ -21,8 +21,11 @@ set(PROJECT_SOURCES
         inputs/inputHandling.cpp
         inputs/inputHandling.h
 
+
+
         calculator/taxCalculator.cpp
         calculator/taxCalculator.h
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

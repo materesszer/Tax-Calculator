@@ -1,7 +1,7 @@
 #include "inputHandling.h"
 #include <iostream>
 #include <vector>
-#include <functional>
+
 
 
 
@@ -40,9 +40,11 @@ bool ProgressiveTaxInputs::validateInputs()
     ProgressiveTaxInputsImplementation validator;
     bool isIncomeValid = validator.incomeValidator(income);
     bool isDeductionsValid = validator.deductionsValidator(deductions, income);
+    bool isBracketLimitsValid = validator.bracketLimitsValidator(bracketLimits, bracketAmount);
+    bool isBracketPercentagesValid = validator.bracketPercentagesValidator(bracketPercentages, bracketAmount);
 
     // Very important, this only allows calculator to proceed if all conditions passed the check
-    std::vector<bool> bools = {isIncomeValid, isDeductionsValid};
+    std::vector<bool> bools = {isIncomeValid, isDeductionsValid, isBracketLimitsValid, isBracketPercentagesValid};
     return validateBools(bools);
 
 }
@@ -57,6 +59,34 @@ bool ProgressiveTaxInputsImplementation::deductionsValidator(int deductions, int
     return deductions >= MIN_DOLLARS && deductions < income;
 }
 
+bool ProgressiveTaxInputsImplementation::bracketLimitsValidator(std::array<int, MAX_BRACKETS> bracketLimits, int bracketAmount)
+{
+    int previousLimit = 0;
+    for (int i = 0; i < bracketAmount - 1; i++)
+    {
+        if (bracketLimits[i] < previousLimit)
+        {
+            return false;
+        }
+        previousLimit = bracketLimits[i];
+    }
+    return true;
+
+}
+
+bool ProgressiveTaxInputsImplementation::bracketPercentagesValidator(std::array<int, MAX_BRACKETS> bracketPercentages, int bracketAmount)
+{
+    int previousPerc = 0;
+    for (int i = 0; i < bracketAmount; i++)
+    {
+        if (bracketPercentages[i] < previousPerc || (bracketPercentages[i] < MIN_TAX || bracketPercentages[i] > MAX_TAX))
+        {
+            return false;
+        }
+        previousPerc = bracketPercentages[i];
+    }
+    return true;
+}
 
 
 
@@ -82,5 +112,6 @@ bool bracketAmountValidator(int brackets)
     return brackets >= MIN_BRACKETS && brackets <= MAX_BRACKETS;
 }
 }
+
 
 

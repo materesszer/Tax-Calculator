@@ -120,7 +120,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="singleTax_2Page1">
      <layout class="QGridLayout" name="singleTax">
@@ -365,6 +365,9 @@
            <property name="text">
             <string>Limit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="0" column="4">
@@ -377,7 +380,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>16777215</height>
             </size>
            </property>
@@ -437,6 +440,9 @@
            <property name="text">
             <string>Limit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="0" column="4">
@@ -449,7 +455,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>16777215</height>
             </size>
            </property>
@@ -509,6 +515,9 @@
            <property name="text">
             <string>Limit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="0" column="4">
@@ -521,7 +530,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>16777215</height>
             </size>
            </property>
@@ -581,6 +590,9 @@
            <property name="text">
             <string>Limit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="0" column="4">
@@ -593,7 +605,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>16777215</height>
             </size>
            </property>
@@ -653,6 +665,9 @@
            <property name="text">
             <string>Limit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
           </widget>
          </item>
          <item row="0" column="4">
@@ -668,7 +683,7 @@
            </property>
            <property name="maximumSize">
             <size>
-             <width>40</width>
+             <width>100</width>
              <height>16777215</height>
             </size>
            </property>

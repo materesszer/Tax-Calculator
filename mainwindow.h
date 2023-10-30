@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "inputs/inputHandling.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -34,6 +35,10 @@ private slots:
     void disableRestOfBrackets(int userInput);
 
     void disableLastBracketLimit(int userInput);
+
+    std::array<int, MAX_BRACKETS> getBracketLimits();
+    std::array<int, MAX_BRACKETS> getBracketPercentages();
+    void on_calculateProgButton_clicked();
 
 private:
     Ui::MainWindow *ui;

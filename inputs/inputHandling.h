@@ -45,8 +45,19 @@ class ProgressiveTaxInputs
     private:
     int income;
     int deductions;
-    int bracketPercentages;
-    int bracketLimits;
+    std::array<int, MAX_BRACKETS> bracketPercentages;
+    std::array<int, MAX_BRACKETS> bracketLimits;
+    int bracketAmount;
+
+    public:
+    ProgressiveTaxInputs(int inc, int ded, std::array<int, MAX_BRACKETS> brPer, std::array<int, MAX_BRACKETS> brLim, int brAm)
+    {
+        income = inc;
+        deductions = ded;
+        bracketPercentages = brPer;
+        bracketLimits = brLim;
+        bracketAmount = brAm;
+    }
 
     bool validateInputs();
 
@@ -56,7 +67,9 @@ class ProgressiveTaxInputsImplementation
     public:
     bool incomeValidator(int income);
     bool deductionsValidator(int deductions, int income);
-    bool bracketAmountValidator(int brackets);
+    bool bracketLimitsValidator(std::array<int, MAX_BRACKETS> bracketLimits, int bracketAmount);
+    bool bracketPercentagesValidator(std::array<int, MAX_BRACKETS> bracketPercentages, int bracketAmount);
+
 };
 
 namespace progressiveTaxBrackets
