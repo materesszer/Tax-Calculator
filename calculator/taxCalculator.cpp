@@ -1,4 +1,4 @@
-#include "taxCalculator.h"
+#include "../include/taxCalculator.h"
 #include <array>
 
 double ProgressiveTaxCalculator::calculateTax(int income, int deductions, std::array<int, MAX_BRACKETS>  brackets, std::array<int, MAX_BRACKETS> bracket_limits, int bracket_count)

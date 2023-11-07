@@ -1,7 +1,7 @@
-#include "mainwindow.h"
-#include "./ui_mainwindow.h"
-#include "inputs/inputHandling.h"
-#include "calculator/taxCalculator.h"
+#include "include/mainwindow.h"
+#include "ui/ui_mainwindow.h"
+#include "include/inputHandling.h"
+#include "include/taxCalculator.h"
 
 const int DEFAULTBRACKETSNUMBER = 2;
 

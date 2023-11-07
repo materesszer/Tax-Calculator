@@ -39,6 +39,24 @@
      </rect>
     </property>
     <layout class="QGridLayout" name="userInputs">
+     <item row="2" column="0">
+      <layout class="QHBoxLayout" name="taxModes">
+       <item>
+        <widget class="QRadioButton" name="singleTaxButton">
+         <property name="text">
+          <string>Single tax</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="progressiveTaxButton">
+         <property name="text">
+          <string>Progressive tax</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
      <item row="0" column="0">
       <layout class="QHBoxLayout" name="income">
        <item>
@@ -52,9 +70,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="incomeAmount">
-         <property name="placeholderText">
-          <string>enter income:</string>
+        <widget class="QSpinBox" name="incomeAmount">
+         <property name="maximum">
+          <number>2147483647</number>
          </property>
         </widget>
        </item>
@@ -70,39 +88,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="deductionAmount">
-         <property name="enabled">
-          <bool>true</bool>
-         </property>
-         <property name="autoFillBackground">
-          <bool>false</bool>
-         </property>
-         <property name="frame">
-          <bool>true</bool>
-         </property>
-         <property name="placeholderText">
-          <string>enter deductions:</string>
-         </property>
-         <property name="clearButtonEnabled">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item row="2" column="0">
-      <layout class="QHBoxLayout" name="taxModes">
-       <item>
-        <widget class="QRadioButton" name="singleTaxButton">
-         <property name="text">
-          <string>Single tax</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="progressiveTaxButton">
-         <property name="text">
-          <string>Progressive tax</string>
+        <widget class="QSpinBox" name="deductionAmount">
+         <property name="maximum">
+          <number>2147483647</number>
          </property>
         </widget>
        </item>
@@ -188,33 +176,15 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="value">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>25</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
+            <widget class="QSpinBox" name="value">
              <property name="maximumSize">
               <size>
-               <width>355</width>
+               <width>125</width>
                <height>16777215</height>
               </size>
              </property>
-             <property name="layoutDirection">
-              <enum>Qt::LeftToRight</enum>
-             </property>
-             <property name="maxLength">
-              <number>5555</number>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-             </property>
-             <property name="dragEnabled">
-              <bool>false</bool>
-             </property>
-             <property name="placeholderText">
-              <string>enter tax rate:</string>
+             <property name="buttonSymbols">
+              <enum>QAbstractSpinBox::PlusMinus</enum>
              </property>
             </widget>
            </item>
@@ -739,11 +709,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>209</x>
-     <y>79</y>
+     <y>84</y>
     </hint>
     <hint type="destinationlabel">
      <x>209</x>
-     <y>109</y>
+     <y>106</y>
     </hint>
    </hints>
   </connection>

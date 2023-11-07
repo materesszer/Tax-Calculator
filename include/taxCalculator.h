@@ -2,7 +2,7 @@
 #define TAXCALCULATOR_H
 
 #include <array>
-#include "../inputs/inputHandling.h"
+#include "inputHandling.h"
 
 class ProgressiveTaxCalculator
 {
