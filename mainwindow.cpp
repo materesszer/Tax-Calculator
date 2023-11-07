@@ -1,7 +1,9 @@
-#include "include/mainwindow.h"
 #include "ui/ui_mainwindow.h"
+
+#include "include/mainwindow.h"
 #include "include/inputHandling.h"
 #include "include/taxCalculator.h"
+#include "include/uiSetup.h"
 
 const int DEFAULTBRACKETSNUMBER = 2;
 
@@ -10,15 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-
-    ui->deductionAmount->setVisible(false);
-
-    ui->singleTaxButton->setChecked(true);
-
-    ui->results_2->setHidden(true);
-
-    ui->results_3->setHidden(true);
+    UiSetup::setupWindow(this);
 }
 
 MainWindow::~MainWindow()
@@ -28,33 +22,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_singleTaxButton_toggled(bool checked)
 {
-    ui->singleTax_2Page1->setVisible(true);
-    ui->singleTax_2Page2->setHidden(true);
-
-    ui->bracketCount_2->setHidden(true);
+    UiSetup::setupSingleTax(this, checked);
 }
 
 
 
 void MainWindow::on_progressiveTaxButton_toggled(bool checked)
 {
-    ui->singleTax_2Page2->setVisible(true);
-    ui->singleTax_2Page1->setHidden(true);
-
-    ui->bracketCount_2->setVisible(true);
-
-
-    ui->Br3Lim->setEnabled(false);
-    ui->Br3Perc->setEnabled(false);
-
-    ui->Br4Lim->setEnabled(false);
-    ui->Br4Perc->setEnabled(false);
-
-    ui->Br5Lim->setEnabled(false);
-    ui->Br5Perc->setEnabled(false);
-
-
-
+    UiSetup::setupProgressiveTax(this,checked);
 }
 // END SETUP
 

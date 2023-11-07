@@ -40,7 +40,7 @@ private slots:
     std::array<int, MAX_BRACKETS> getBracketPercentages();
     void on_calculateProgButton_clicked();
 
-private:
+public:
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
