@@ -72,10 +72,6 @@ class ProgressiveTaxInputsImplementation
 
 };
 
-namespace progressiveTaxBrackets
-{
-bool bracketAmountValidator(int brackets);
-}
 
 
 #endif // INPUTHANDLING_H
