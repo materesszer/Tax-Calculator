@@ -1,7 +1,6 @@
 
-
 #include "../include/uiSetup.h"
-#include "../include/mainwindow.h" // Include the mainwindow.h file
+#include "../include/mainwindow.h"
 #include "ui/ui_mainwindow.h"
 
 void UiSetup::setupWindow(MainWindow* mainWindow)
@@ -25,6 +24,8 @@ void UiSetup::setupProgressiveTax(MainWindow* mainWindow, bool checked)
     mainWindow->ui->singleTax_2Page2->setVisible(true);
     mainWindow->ui->singleTax_2Page1->setHidden(true);
     mainWindow->ui->bracketCount_2->setVisible(true);
+
+    mainWindow->ui->Br2Lim->setEnabled(false);
 
     mainWindow->ui->Br3Lim->setEnabled(false);
     mainWindow->ui->Br3Perc->setEnabled(false);

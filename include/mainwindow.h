@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "inputHandling.h"
+#include "qlabel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -40,7 +41,11 @@ private slots:
     std::array<int, MAX_BRACKETS> getBracketPercentages();
     void on_calculateProgButton_clicked();
 
+    void on_deductionAmount_valueChanged(int arg1);
+
 public:
     Ui::MainWindow *ui;
+    QLabel* errorLabel;
+    bool ERROR_SHOWN = false;
 };
 #endif // MAINWINDOW_H

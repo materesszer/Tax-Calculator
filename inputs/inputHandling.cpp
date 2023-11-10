@@ -105,13 +105,3 @@ bool validateBools(const std::vector<bool>& bools)
 
 }
 
-namespace progressiveTaxBrackets
-{
-bool bracketAmountValidator(int brackets)
-{
-    return brackets >= MIN_BRACKETS && brackets <= MAX_BRACKETS;
-}
-}
-
-
-

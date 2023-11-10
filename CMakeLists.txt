@@ -18,6 +18,7 @@ set(PROJECT_SOURCES
 
         ui/mainwindow.ui
         ui/uiSetup.cpp
+        ui/userInputWarnings.cpp
 
         inputs/inputHandling.cpp
         calculator/taxCalculator.cpp
@@ -26,6 +27,7 @@ set(PROJECT_SOURCES
         include/inputHandling.h
         include/mainwindow.h
         include/uiSetup.h
+        include/userInputWarnings.h
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
