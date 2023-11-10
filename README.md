@@ -58,7 +58,6 @@ Binary packages will be released after the project is finished // DONE
 
 #### CMakeLists.txt &CmakeLists.txt.user:
 - Config files for the project
-- 
 #### inputHandling.cpp:
 - Contains the code for the handling of inputs, responsible for preventing errors
 
