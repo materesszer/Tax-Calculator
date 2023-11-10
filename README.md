@@ -2,7 +2,7 @@
 GUI-based tax calculator for my CS50 final project. Usage is very simple, just enter your monthly income(in any currency you want), check the deductions box if you have deductible items(and input the total value of them), then you need to check whether your country has a progressive or flat-tax system. Select the appropriate one and fill in the values appearing on the screen. You should see your results below the calculate button.
 
 #### NOTE: 
-You must input a number for the amount of brackets if using proggressive taxation method, in the proper field above results.
+You must input a number for the amount of brackets if using progressive taxation method, in the proper field above results.
 
 <br></br>
 > "All of this just works."
