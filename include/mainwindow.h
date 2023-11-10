@@ -27,21 +27,11 @@ private slots:
 
     void on_calculateButton_clicked();
 
-
-
     void on_bracketAmount_valueChanged(int value);
 
-    void enableTaxBrackets(int userInput);
-
-    void disableRestOfBrackets(int userInput);
-
-    void disableLastBracketLimit(int userInput);
-
-    std::array<int, MAX_BRACKETS> getBracketLimits();
-    std::array<int, MAX_BRACKETS> getBracketPercentages();
     void on_calculateProgButton_clicked();
 
-    void on_deductionAmount_valueChanged(int arg1);
+    void on_deductionAmount_valueChanged(int value);
 
 public:
     Ui::MainWindow *ui;

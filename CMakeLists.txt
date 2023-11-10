@@ -19,16 +19,22 @@ set(PROJECT_SOURCES
         ui/mainwindow.ui
         ui/uiSetup.cpp
         ui/userInputWarnings.cpp
+        ui/bracketStateHandler.cpp
 
         inputs/inputHandling.cpp
+        inputs/bracketInputHandler.cpp
+
         calculator/taxCalculator.cpp
 
         include/taxCalculator.h
         include/inputHandling.h
+        include/bracketInputHandler.h
         include/mainwindow.h
         include/uiSetup.h
         include/userInputWarnings.h
+        include/bracketStateHandler.h
 )
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Tax-Calculator

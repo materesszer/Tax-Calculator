@@ -1,10 +1,11 @@
 #include "ui/ui_mainwindow.h"
 
 #include "include/mainwindow.h"
-#include "include/inputHandling.h"
 #include "include/taxCalculator.h"
 #include "include/uiSetup.h"
 #include "include/userInputWarnings.h"
+#include "include/bracketStateHandler.h"
+#include "include/bracketInputHandler.h"
 
 #include <QMessageBox>
 
@@ -27,8 +28,6 @@ void MainWindow::on_singleTaxButton_toggled(bool checked)
 {
     UiSetup::setupSingleTax(this, checked);
 }
-
-
 
 void MainWindow::on_progressiveTaxButton_toggled(bool checked)
 {
@@ -83,8 +82,8 @@ void MainWindow::on_calculateProgButton_clicked()
     int income = ui->incomeAmount->text().toInt();
     int deductions = ui->deductionAmount->text().toInt();
     int bracketAmount = ui->bracketAmount->text().toInt();
-    std::array<int, MAX_BRACKETS> bracketLimits = MainWindow::getBracketLimits();
-    std::array<int, MAX_BRACKETS> bracketPercentages = MainWindow::getBracketPercentages();
+    std::array<int, MAX_BRACKETS> bracketLimits = bracketInputHandler::getBracketLimits(this);
+    std::array<int, MAX_BRACKETS> bracketPercentages = bracketInputHandler::getBracketPercentages(this);
 
 
     // Workaround for disabled deductions, pair of this reverts it to 0 after validity check
@@ -118,118 +117,16 @@ void MainWindow::on_calculateProgButton_clicked()
     }
 }
 
-
-
-
-std::array<int, MAX_BRACKETS> MainWindow::getBracketLimits()
-{
-    QGridLayout* gridLayout = MainWindow::findChild<QGridLayout*>("gridLayout");
-    std::array<int, MAX_BRACKETS> returnArray;
-
-    for (int i = 1; i <= MAX_BRACKETS; ++i) {
-        QString limName = QString("Br%1Lim").arg(i);
-
-        QLineEdit* limLineEdit = MainWindow::findChild<QLineEdit*>(limName);
-
-        if (limLineEdit->isEnabled()) {
-            returnArray[i-1] = limLineEdit->text().toInt();
-        }
-    }
-    return returnArray;
-}
-
-std::array<int, MAX_BRACKETS> MainWindow::getBracketPercentages()
-{
-    QGridLayout* gridLayout = MainWindow::findChild<QGridLayout*>("gridLayout");
-    std::array<int, MAX_BRACKETS> returnArray;
-    for (int i = 1; i <= MAX_BRACKETS; ++i) {
-        QString percName = QString("Br%1Perc").arg(i);
-
-        QLineEdit* percLineEdit = MainWindow::findChild<QLineEdit*>(percName);
-
-        if (percLineEdit->isEnabled()) {
-            returnArray[i-1] = percLineEdit->text().toInt();
-        }
-    }
-    return returnArray;
-}
-
-
-
+// Dynamically enables bracket limits and percentages depending on user input
 void MainWindow::on_bracketAmount_valueChanged(int value)
 {
-    MainWindow::enableTaxBrackets(value);
-    MainWindow::disableRestOfBrackets(value);
-    MainWindow::disableLastBracketLimit(value);
+    bracketStateHandler::enableTaxBrackets(this, value);
+    bracketStateHandler::disableRestOfBrackets(this, value);
+    bracketStateHandler::disableLastBracketLimit(this, value);
 
 }
-
-
-
-void MainWindow::enableTaxBrackets(int userInput) {
-    QGridLayout* gridLayout = findChild<QGridLayout*>("gridLayout");
-    if (!gridLayout)
-        return;
-
-    for (int i = MIN_BRACKETS; i <= userInput; ++i) {
-        QString limName = QString("Br%1Lim").arg(i);
-        QString percName = QString("Br%1Perc").arg(i);
-
-        QLineEdit* limLineEdit = findChild<QLineEdit*>(limName);
-        QLineEdit* percLineEdit = findChild<QLineEdit*>(percName);
-
-        if (limLineEdit && percLineEdit) {
-            limLineEdit->setEnabled(true);
-            percLineEdit->setEnabled(true);
-        }
-    }
-}
-
-void MainWindow::disableRestOfBrackets(int userInput)
-{
-    QGridLayout* gridLayout = findChild<QGridLayout*>("gridLayout");
-    if (!gridLayout)
-        return;
-
-    for (int i = userInput + 1; i <= MAX_BRACKETS; i++)
-    {
-        QString limName = QString("Br%1Lim").arg(i);
-        QString percName = QString("Br%1Perc").arg(i);
-
-        QLineEdit* limLineEdit = findChild<QLineEdit*>(limName);
-        QLineEdit* percLineEdit = findChild<QLineEdit*>(percName);
-
-        if (limLineEdit && percLineEdit) {
-            limLineEdit->setEnabled(false);
-            percLineEdit->setEnabled(false);
-        }
-    }
-}
-
-void MainWindow::disableLastBracketLimit(int userInput)
-{
-    QGridLayout* gridLayout = findChild<QGridLayout*>("gridLayout");
-    if (!gridLayout)
-        return;
-
-    QString limName = QString("Br%1Lim").arg(userInput);
-
-    QLineEdit* limLineEdit = findChild<QLineEdit*>(limName);
-
-    if (limLineEdit)
-    {
-        limLineEdit->setEnabled(false);
-    }
-
-}
-
-
-
-
-
 
 void MainWindow::on_deductionAmount_valueChanged(int value)
 {
     userInputWarnings::showDeductionWarning(this, this, value);
 }
-

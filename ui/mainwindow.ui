@@ -104,7 +104,7 @@
       <x>150</x>
       <y>230</y>
       <width>500</width>
-      <height>311</height>
+      <height>351</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -220,9 +220,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>220</y>
+        <y>240</y>
         <width>500</width>
-        <height>100</height>
+        <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="results_5">
@@ -279,7 +279,7 @@
         <x>10</x>
         <y>50</y>
         <width>481</width>
-        <height>171</height>
+        <height>194</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -288,7 +288,7 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetFixedSize</enum>
          </property>
-         <item row="0" column="0">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_2">
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
@@ -301,36 +301,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="Br1Perc">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>10</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>5</width>
-             <height>0</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>%</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
+         <item row="1" column="3">
           <widget class="QLabel" name="label_4">
            <property name="text">
             <string>Limit:</string>
@@ -340,7 +311,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="4">
+         <item row="1" column="4">
           <widget class="QLineEdit" name="Br1Lim">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -356,6 +327,16 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="Br1Perc"/>
+         </item>
         </layout>
        </item>
        <item row="1" column="0">
@@ -363,7 +344,7 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetFixedSize</enum>
          </property>
-         <item row="0" column="0">
+         <item row="1" column="0">
           <widget class="QLabel" name="label_5">
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
@@ -376,46 +357,7 @@
            </property>
           </widget>
          </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="Br2Perc">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>10</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>5</width>
-             <height>0</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_6">
-           <property name="text">
-            <string>%</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Limit:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
+         <item row="1" column="4">
           <widget class="QLineEdit" name="Br2Lim">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -431,6 +373,26 @@
            </property>
           </widget>
          </item>
+         <item row="1" column="3">
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>Limit:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_6">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QSpinBox" name="Br2Perc"/>
+         </item>
         </layout>
        </item>
        <item row="2" column="0">
@@ -438,55 +400,10 @@
          <property name="sizeConstraint">
           <enum>QLayout::SetFixedSize</enum>
          </property>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_8">
-           <property name="frameShape">
-            <enum>QFrame::NoFrame</enum>
-           </property>
-           <property name="lineWidth">
-            <number>1</number>
-           </property>
-           <property name="text">
-            <string>Bracket 3</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="Br3Perc">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>10</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>5</width>
-             <height>0</height>
-            </size>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="2">
           <widget class="QLabel" name="label_9">
            <property name="text">
             <string>%</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QLabel" name="label_10">
-           <property name="text">
-            <string>Limit:</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -506,15 +423,8 @@
            </property>
           </widget>
          </item>
-        </layout>
-       </item>
-       <item row="3" column="0">
-        <layout class="QGridLayout" name="Bracket4" columnstretch="10,2,1,10,2">
-         <property name="sizeConstraint">
-          <enum>QLayout::SetFixedSize</enum>
-         </property>
          <item row="0" column="0">
-          <widget class="QLabel" name="label_11">
+          <widget class="QLabel" name="label_8">
            <property name="frameShape">
             <enum>QFrame::NoFrame</enum>
            </property>
@@ -522,41 +432,12 @@
             <number>1</number>
            </property>
            <property name="text">
-            <string>Bracket 4</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="Br4Perc">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>10</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>5</width>
-             <height>0</height>
-            </size>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_12">
-           <property name="text">
-            <string>%</string>
+            <string>Bracket 3</string>
            </property>
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QLabel" name="label_13">
+          <widget class="QLabel" name="label_10">
            <property name="text">
             <string>Limit:</string>
            </property>
@@ -565,6 +446,16 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="Br3Perc"/>
+         </item>
+        </layout>
+       </item>
+       <item row="3" column="0">
+        <layout class="QGridLayout" name="Bracket4" columnstretch="10,2,1,10,2">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetFixedSize</enum>
+         </property>
          <item row="0" column="4">
           <widget class="QLineEdit" name="Br4Lim">
            <property name="sizePolicy">
@@ -580,6 +471,39 @@
             </size>
            </property>
           </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_12">
+           <property name="text">
+            <string>%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="frameShape">
+            <enum>QFrame::NoFrame</enum>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="text">
+            <string>Bracket 4</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="3">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Limit:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="Br4Perc"/>
          </item>
         </layout>
        </item>
@@ -598,28 +522,6 @@
            </property>
            <property name="text">
             <string>Bracket 5</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="Br5Perc">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>10</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="baseSize">
-            <size>
-             <width>5</width>
-             <height>0</height>
-            </size>
            </property>
           </widget>
          </item>
@@ -661,6 +563,9 @@
             <bool>false</bool>
            </property>
           </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSpinBox" name="Br5Perc"/>
          </item>
         </layout>
        </item>
